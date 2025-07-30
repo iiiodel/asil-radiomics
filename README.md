@@ -15,9 +15,9 @@ Projenin ana klasör yapısı aşağıdaki gibidir. `data` klasörü ve içeriğ
 asil-radiomics/
 │
 ├── data/
-│   ├── raw/                # Ham verilerinizi buraya koyun
-│   ├── structured/         # 1. script'in oluşturduğu düzenli veri klasörü
-│   └── Radyomik_CSV_Ciktilari/ # 3. script'in oluşturduğu CSV çıktı klasörü
+│   ├── raw/                      # Ham verilerinizi buraya koyun
+│   ├── structured/               # 1. script'in oluşturduğu düzenli veri klasörü
+│   └── Radyomik_CSV_Ciktilari/   # 3. script'in oluşturduğu CSV çıktı klasörü
 │
 ├── data_organizer.py             # Ham verileri yapılandıran script
 ├── radiomics_extractor.py        # Radyomik özellikleri çıkaran script

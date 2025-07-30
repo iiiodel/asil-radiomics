@@ -1,0 +1,18 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# IDE ve OS'a özel dosyalar
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Veri Klasörleri - BU KISIM EN ÖNEMLİSİ
+data/
+
+# Özel olarak yüklemek istemediğiniz diğer dosyalar
+*.nrrd
+*.csv
+*.tsv

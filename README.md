@@ -5,7 +5,7 @@ A Python-based pipeline for extracting and analyzing radiomic features from ovar
 
 ## 🧬 Proje Hakkında
 
-Bu proje, yumurtalık kanserine ait medikal görüntülerden (NRRD formatında) kapsamlı radyomik özelliklerin çıkarılması için uçtan uca bir çözüm sunmaktadır. Pipeline, dağınık haldeki ham verilerin organize edilmesi, PyRadiomics kütüphanesi ile 1500'den fazla özelliğin çıkarılması, sonuçların düzenlenmesi ve verilerin interaktif olarak incelenmesi adımlarını içerir.
+Bu proje, yumurtalık kanserine ait medikal görüntülerden (NRRD formatında) kapsamlı radyomik özelliklerin çıkarılması için uçtan uca bir çözüm sunmaktadır. Pipeline, dağınık haldeki ham verilerin organize edilmesi, PyRadiomics kütüphanesi ile 1500'den fazla özelliğin çıkarılması ve sonuçların düzenlenmesi adımlarını içerir. Ayrıca, segmentasyonların doğruluğunu kontrol etmek için bir veri inceleme aracı da sunulmaktadır.
 
 ## 📂 Proje Yapısı
 
@@ -16,12 +16,12 @@ asil-radiomics/
 │
 ├── data/
 │   ├── raw/                # Ham verilerinizi buraya koyun
-│   ├── structured/         # 1. betiğin oluşturduğu düzenli veri klasörü
-│   └── Radyomik_CSV_Ciktilari/ # 3. betiğin oluşturduğu CSV çıktı klasörü
+│   ├── structured/         # 1. script'in oluşturduğu düzenli veri klasörü
+│   └── Radyomik_CSV_Ciktilari/ # 3. script'in oluşturduğu CSV çıktı klasörü
 │
-├── data_organizer.py             # Ham verileri yapılandıran betik
-├── radiomics_extractor.py        # Radyomik özellikleri çıkaran betik
-├── csv_organizer.py              # Üretilen CSV'leri toplayan betik
+├── data_organizer.py             # Ham verileri yapılandıran script
+├── radiomics_extractor.py        # Radyomik özellikleri çıkaran script
+├── csv_organizer.py              # Üretilen CSV'leri toplayan script
 ├── mask_inspector.py             # Tarama/maske inceleme aracı
 │
 ├── .gitignore
@@ -47,7 +47,7 @@ asil-radiomics/
     conda activate radiomics_env
     ```
 
-## 📋 Kullanım Adımları
+## 📋 Ana Pipeline Kullanımı
 
 #### Adım 0: Veri Hazırlığı
 
@@ -66,7 +66,7 @@ data/
 
 #### Adım 1: Verileri Yapılandırma
 
-`data_organizer.py` betiği, ham verileri okur ve `data/structured/` klasörünü analiz için hazırlar.
+`data_organizer.py` script'i, ham verileri okur ve `data/structured/` klasörünü analiz için hazırlar.
 
 ```bash
 python data_organizer.py
@@ -74,7 +74,7 @@ python data_organizer.py
 
 #### Adım 2: Radyomik Özellik Çıkarma
 
-`radiomics_extractor.py` betiği, yapılandırılmış verilerden radyomik özellikleri hesaplar ve sonuçları `data/structured/` içine yazar.
+`radiomics_extractor.py` script'i, yapılandırılmış verilerden radyomik özellikleri hesaplar ve sonuçları (bireysel ve birleştirilmiş CSV'ler) `data/structured/` içine yazar.
 
 ```bash
 python radiomics_extractor.py
@@ -82,16 +82,21 @@ python radiomics_extractor.py
 
 #### Adım 3: CSV Çıktılarını Toplama
 
-`csv_organizer.py` betiği, üretilen tüm CSV dosyalarını `data/Radyomik_CSV_Ciktilari/` klasörüne taşır.
+`csv_organizer.py` script'i, üretilen tüm CSV dosyalarını `data/Radyomik_CSV_Ciktilari/` klasörüne taşır.
 
 ```bash
 python csv_organizer.py
 ```
 
-#### Adım 4 (Opsiyonel): Veri Kalite Kontrolü
+---
 
-`mask_inspector.py` ile herhangi bir hastanın verisini interaktif olarak inceleyebilirsiniz.
+## Ek Araçlar
 
+### Segmentasyon Kontrolü için İnteraktif Görüntüleyici
+
+`mask_inspector.py` script'i, ana pipeline'dan bağımsız bir araçtır. Bu araç, radyomik özelliklerini çıkarmadan önce ham veya yapılandırılmış verilerdeki `scan.nrrd` ve `segmentation.nrrd` dosyalarını interaktif bir pencerede incelemenizi sağlar. Bu sayede segmentasyonlarınızın doğruluğunu ve sınırlarlarını görsel olarak teyit edebilirsiniz.
+
+Kullanmak için script içindeki hasta yolu değişkenini düzenleyip çalıştırın:
 ```bash
 python mask_inspector.py
 ```
@@ -102,4 +107,4 @@ Bu projede bir açık kaynak lisansı belirtilmemiştir. Bu nedenle, varsayılan
 
 ## Veri Kullanımı ve Gizliliği
 
-Bu projede kullanılan medikal görüntü verileri (.nrrd, .csv), hasta gizliliği ve etik kurallar gereği **bu repoda bulunmamaktadır ve paylaşıma açık değildir.** Bu betiklerin amacı, benzer veri setlerine sahip diğer araştırmacılara bir metodoloji ve pipeline sunmaktır.
+Bu projede kullanılan medikal görüntü verileri (.nrrd, .csv), hasta gizliliği ve etik kurallar gereği **bu repoda bulunmamaktadır ve paylaşıma açık değildir.** Bu script'lerin amacı, benzer veri setlerine sahip diğer araştırmacılara bir metodoloji ve pipeline sunmaktır.

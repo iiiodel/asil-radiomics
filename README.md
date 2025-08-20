@@ -33,7 +33,7 @@ asil-radiomics/
 
 1.  **Depoyu Klonlayın:**
     ```bash
-    git clone [https://github.com/kullanici_adiniz/asil-radiomics.git](https://github.com/kullanici_adiniz/asil-radiomics.git)
+    git clone https://github.com/iiiodel/asil-radiomics.git
     cd asil-radiomics
     ```
 
